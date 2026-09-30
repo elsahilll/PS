@@ -7,11 +7,11 @@ const FILE_ID_2 = "d925669e054c6a55ccbb6d3dc63"; // Paste your second MEGA File 
 const VIDEOS = {
   "card-1": {
     fileId: FILE_ID_1,
-    title: "Tour Video 1"
+    title: "Barbarian"
   },
   "card-2": {
     fileId: FILE_ID_2,
-    title: "Tour Video 2"
+    title: "Presence"
   }
 };
 
