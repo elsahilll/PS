@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Video Stream</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Key Prompt Screen -->
+    <div id="lock-screen">
+        <div class="login-box">
+            <h2>Private Video Stream</h2>
+            <p>Paste the Decryption Key to unlock and play this video.</p>
+
+            <input type="text" id="key-input" placeholder="Enter Decryption Key" autocomplete="off" autofocus>
+
+            <button id="unlock-btn">Unlock & Stream</button>
+            <div id="error-text" class="error-msg">Please enter a valid decryption key.</div>
+        </div>
+    </div>
+
+    <header>
+        <h1>Personal Stream</h1>
+        <p>Private streaming player</p>
+    </header>
+
+    <!-- Player Wrapper Container -->
+    <main class="stream-layout">
+        <div class="player-card" id="player-container">
+            <div class="video-wrapper">
+                <iframe id="active-player" src=""></iframe>
+
+                <!-- Full-Width Top Blocker: Disables title, logo, download link & share button -->
+                <div id="top-bar-blocker"></div>
+
+                <!-- Bottom-Right Blocker: Disables MEGA's native Fullscreen Button -->
+                <div id="fs-blocker"></div>
+
+                <!-- Floating Exit Button for Mobile / Fullscreen -->
+                <button id="exit-fs-btn" aria-label="Exit Fullscreen">✕ Exit</button>
+            </div>
+
+            <div class="video-info">
+                <div class="info-header">
+                    <h2>Private Stream Video</h2>
+                    <button id="fs-btn">⛶ Fullscreen</button>
+                </div>
+                <p>Recorded in Full HD. Stream direct without downloading.</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

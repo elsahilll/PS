@@ -1,0 +1,327 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background-color: #0f0f10;
+  color: #f1f1f1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+header {
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 1.5rem;
+}
+
+header h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+header p {
+  color: #888;
+  font-size: 0.95rem;
+  margin-top: 0.3rem;
+}
+
+.stream-layout {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.player-card {
+  background: #191a1d;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #282a2e;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* ========================================================
+   FULL-WIDTH TOP BLOCKER (Disables Title, Logo & Share)
+   ======================================================== */
+#top-bar-blocker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;               /* Stretches completely across the top edge */
+  height: 52px;           /* Covers the entire top MEGA bar height */
+  background: transparent;/* Completely invisible */
+  z-index: 50;            /* Sits above the iframe */
+  pointer-events: auto;   /* Absorbs all clicks */
+  cursor: default;
+}
+
+/* Ensure proper coverage in fullscreen mode */
+#player-container:fullscreen #top-bar-blocker,
+#player-container:-webkit-full-screen #top-bar-blocker {
+  height: 65px;
+}
+
+/* ========================================================
+   BOTTOM-RIGHT BLOCKER (Disables Native Fullscreen Button)
+   ======================================================== */
+#fs-blocker {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  z-index: 50;
+  pointer-events: auto;
+  cursor: default;
+}
+
+#player-container:fullscreen #fs-blocker,
+#player-container:-webkit-full-screen #fs-blocker {
+  width: 60px;
+  height: 55px;
+}
+
+/* Ensure the exit button sits above the top blocker so it remains clickable */
+#exit-fs-btn {
+  z-index: 100;
+}
+
+/* ========================================================
+   FULLSCREEN STYLING (Maintains the blocker in fullscreen)
+   ======================================================== */
+#player-container:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#player-container:fullscreen .video-wrapper {
+  width: 100vw;
+  height: 100vh;
+  aspect-ratio: auto;
+}
+
+#player-container:fullscreen .video-info {
+  display: none;
+}
+
+/* Slightly expand hit area in high-res fullscreen */
+#player-container:fullscreen #share-blocker {
+  width: 160px;
+  height: 65px;
+}
+
+/* Video Info & Controls */
+.video-info {
+  padding: 1rem 1.25rem;
+}
+
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.video-info h2 {
+  font-size: 1.2rem;
+}
+
+.video-info p {
+  color: #9da3af;
+  font-size: 0.9rem;
+}
+
+#fs-btn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 0.45rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#fs-btn:hover {
+  background: #1d4ed8;
+}
+
+/* Lock Screen */
+#lock-screen {
+  position: fixed;
+  inset: 0;
+  background: #09090b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.login-box {
+  background: #18181b;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid #27272a;
+  width: 90%;
+  max-width: 360px;
+  text-align: center;
+}
+
+.login-box h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.login-box p {
+  color: #a1a1aa;
+  font-size: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #3f3f46;
+  background: #27272a;
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  outline: none;
+}
+
+.login-box input:focus {
+  border-color: #3b82f6;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 6px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.error-msg {
+  color: #ef4444;
+  font-size: 0.8rem;
+  margin-top: 0.75rem;
+  display: none;
+}
+/* ========================================================
+   TOP-RIGHT BLOCKER (Disables Share Button)
+   ======================================================== */
+#share-blocker {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 130px;
+  height: 55px;
+  background: transparent;
+  z-index: 50;
+  pointer-events: auto;
+  cursor: default;
+}
+
+/* ========================================================
+   BOTTOM-RIGHT BLOCKER (Disables MEGA's Fullscreen Button)
+   ======================================================== */
+#fs-blocker {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 48px;            /* Precise width covering just the square FS button */
+  height: 48px;           /* Height of the control bar */
+  background: transparent;/* Completely invisible */
+  z-index: 50;            /* Sits above the iframe */
+  pointer-events: auto;   /* Absorbs clicks */
+  cursor: default;
+}
+
+/* Ensure the blocker scales appropriately if fullscreen is active */
+#player-container:fullscreen #fs-blocker {
+  width: 60px;
+  height: 55px;
+}
+/* ========================================================
+   FLOATING EXIT FULLSCREEN BUTTON
+   ======================================================== */
+/* ========================================================
+   AUTO-FADING EXIT FULLSCREEN BUTTON
+   ======================================================== */
+#exit-fs-btn {
+  display: none;             /* Completely hidden in standard view */
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  /* Default in fullscreen: completely transparent & unclickable */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+/* Enable display block when fullscreen is active */
+#player-container:fullscreen #exit-fs-btn,
+#player-container:-webkit-full-screen #exit-fs-btn {
+  display: block;
+}
+
+/* When user interacts, this class makes it visible and clickable */
+#exit-fs-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#exit-fs-btn:active {
+  background: rgba(255, 255, 255, 0.25);
+}
+/* Show the button automatically when fullscreen is engaged */
+#player-container:fullscreen #exit-fs-btn,
+#player-container:-webkit-full-screen #exit-fs-btn {
+  display: block;
+}
