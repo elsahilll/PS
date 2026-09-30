@@ -100,7 +100,7 @@ cancelBtn.addEventListener("click", () => {
 // ========================================================
 function startPlayback(fileId, key, title) {
   currentPlayerTitle.innerText = title;
-  playerFrame.src = `https://avcaption.com/watch/${FILE_ID}${currentDecryptionKey}`;
+  playerFrame.src = `https://avcaption.com/watch/${fileId}${key}`;
   playerModal.style.display = "flex";
 }
 
