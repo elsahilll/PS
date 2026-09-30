@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Stream Vault</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Netflix-Style Top Navigation -->
+    <header class="navbar">
+        <div class="brand">PRIVATE<span>STREAM</span></div>
+        <div class="user-badge">Private Access</div>
+    </header>
+
+    <!-- Netflix Catalog Section -->
+    <main class="catalog-container">
+        <h2 class="section-title">Available Streams</h2>
+        <div class="video-grid">
+
+            <!-- Card 1 -->
+            <div class="video-card" id="card-1">
+                <div class="card-thumb">
+                    <div class="play-icon">▶</div>
+                    <span class="badge">HD 720p</span>
+                </div>
+                <div class="card-details">
+                    <h3>Barbarian</h3>
+                    <p class="meta">Private Stream</p>
+                    <p class="description">Click to unlock and stream directly.</p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="video-card" id="card-2">
+                <div class="card-thumb thumb-2">
+                    <div class="play-icon">▶</div>
+                    <span class="badge">HD 720p</span>
+                </div>
+                <div class="card-details">
+                    <h3>Presence</h3>
+                    <p class="meta">Private Stream</p>
+                    <p class="description">Click to unlock and stream directly.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Key Unlock Modal -->
+    <div id="lock-modal" class="modal-backdrop">
+        <div class="modal-box">
+            <h3 id="modal-video-title">Unlock Stream</h3>
+            <p>Enter the decryption key provided for this file.</p>
+
+            <input type="text" id="key-input" placeholder="Paste decryption key" autocomplete="off">
+            <div id="error-text" class="error-msg">Please enter a valid decryption key.</div>
+
+            <div class="modal-actions">
+                <button id="unlock-btn" class="btn-primary">Unlock & Watch</button>
+                <button id="cancel-btn" class="btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theater Player Overlay -->
+    <div id="player-modal" class="player-overlay">
+        <div class="player-box" id="player-container">
+
+            <!-- Video Frame & Shield Blockers -->
+            <div class="video-wrapper">
+                <iframe id="active-player" src=""></iframe>
+                <div id="top-bar-blocker"></div>
+                <div id="fs-blocker"></div>
+                <button id="exit-fs-btn" aria-label="Exit Fullscreen">✕ Exit Fullscreen</button>
+            </div>
+
+            <!-- Player Bar Controls -->
+            <div class="player-bar">
+                <div>
+                    <h2 id="current-player-title">Tour Video</h2>
+                    <span class="stream-status">Encrypted Direct Stream</span>
+                </div>
+                <div class="control-actions">
+                    <button id="fs-btn" class="btn-fs">⛶ Fullscreen</button>
+                    <button id="close-player-btn" class="btn-close">✕ Close Video</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
